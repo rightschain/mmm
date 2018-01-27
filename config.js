@@ -1,28 +1,28 @@
 var respecConfig = {
     specStatus: "WD",
-    shortName: "dotbc-mvd-model",
-    edDraftURI: "https://cardstack.github.io/dotbc-documentation/architecture/mvd/",
+    shortName: "mmm",
+    edDraftURI: "https://righstchain.github.io/mmm/",
     editors: [ {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
-                    company:    "Monegraph",
-                    companyURL: "http://www.monegraph.com/",
-                    mailto:     "renato.iannella@monegraph.com"
+                    company:    "RightsChain",
+                    companyURL: "http://www.rightschain.info/",
+                    mailto:     "ri@rightschain.info"
                 }
              ],
-    wg: "DotBC",
+    wg: "RighstChain",
     logos: [
         { src:  "http://files.gandi.ws/gandi91666/image/logo.png",
-            href: "http://dotblockchainmusic.com/",
-            alt: "dot blockchain Music",
+            href: "http://www.rightschain.info/",
+            alt: "Righsts Chain",
             width: 100 }
     ],
-    wgURI: "http://dotblockchainmusic.com/",
+    wgURI: "http://www.rightschain.info/",
     wgPublicList: "",
     inlineCSS: true,
     noIDLIn: true,
     noLegacyStyle: false,
     noRecTrack: true,
-    overrideCopyright: "<b>Copyright:</b> 2017 Dot Blockchain Music. All Rights Reserved.",
+    overrideCopyright: "<b>Copyright:</b> 201 RightsC Chain. All Rights Reserved.",
     localBiblio:  {
         "ISO15707": {
             title: "International Standard musical Work Code (ISWC)",
