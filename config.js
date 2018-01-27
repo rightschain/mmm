@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "WD",
     shortName: "mmm",
-    edDraftURI: "https://righstchain.github.io/mmm/",
+    edDraftURI: "https://rightschain.github.io/mmm/",
     editors: [ {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
                     company:    "RightsChain",
@@ -9,11 +9,11 @@ var respecConfig = {
                     mailto:     "ri@rightschain.info"
                 }
              ],
-    wg: "RighstChain",
+    wg: "RightsChain",
     logos: [
         { src:  "http://files.gandi.ws/gandi91666/image/logo.png",
             href: "http://www.rightschain.info/",
-            alt: "Righsts Chain",
+            alt: "Rights Chain",
             width: 100 }
     ],
     wgURI: "http://www.rightschain.info/",
@@ -22,7 +22,7 @@ var respecConfig = {
     noIDLIn: true,
     noLegacyStyle: false,
     noRecTrack: true,
-    overrideCopyright: "<b>Copyright:</b> 201 RightsC Chain. All Rights Reserved.",
+    overrideCopyright: "<b>Copyright:</b> 2018 RightsChain. All Rights Reserved.",
     localBiblio:  {
         "ISO15707": {
             title: "International Standard musical Work Code (ISWC)",
