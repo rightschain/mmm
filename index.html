@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+        <title>Music Metadata Model (MMM)</title>
+        
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <!--
+    <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
+    -->
+    <script class="remove" src="../respec/builds/respec-w3c-common.js"></script>
+    <script class="remove" src="config.js"></script>
+        
+	</head>
+	<body>
+        
+        <section id="abstract" class="informative">
+		<p>This specification outlines the Music Metadata Model (MMM) that will be used to drive Music Services over Distributed Ledger Technologies, such as the BlockChain.</p>
+            
+     
+        </section>
+	
+        
+        <h2>Status of this Document</h2>
+          <p>This is a work in progress. No section should be considered final, and the absence of any content does not imply that such content is out of scope, or may not appear in the future. If you feel something should be covered, updated, or removed, then please tell the editors.</p>  
+            
+		
+        <section id="conformance"></section>
+        
+    
+        
+        <section id="conceptual" class="informative">
+		 <h1>Introduction</h1>       
+                
+<p>The foundation of the future digital music business is data. The ideal being a federated system of interoperable datasets, in which each stakeholder in the system communicates authoritative, normalized data to other participants in the system with minimal human intervention required. The current state of music data is far from that ideal, as the different vertical systems are not interoperable, and the data at individual organisations within those verticals is rife with errors, and ambiguity. To make matters more complicated, organisation also operate at very different levels of technology adoption, and the industry has been incredibly slow in dealing with these challenges. </p>
+
+            <p>DotBlockchain (dotBC) music is creating a service that leverages the power of emerging technologies (such as the blockchain ledger) to create a standard set of "metadata gauges" for the industry to operate on at all levels of sophistication. It provides control to the owners, and transparency to all stakeholders were required.
+            </p>
+<p>The problems resolved by the these emerging technologies are dependent on the underlying music datasets, and what is required for each stakeholder. Establishing manageable metadata sets that are both backwards-compatible and forward-looking are equally critical in order to address the industry needs. </p>
+
+<p>
+The amount of metadata that can be associated with musical works or master recordings is endless. However, dotBC is concerned with the essential functions of identifying the original and current owner(s) of a composition or master, and to match of the correct master to the correct composition. DotBC defines the Minimum Viable Data (MVD) to establish sufficient requirements for data exchange to enable unambiguous identification of entities and their relationships </p>
+
+
+            
+        </section>
+
+         
+                    
+        
+        <section id="logical-model">
+		 <h1>Music Metadata Model (MMM) - Logical View</h1>
+            
+          
+            
+          <p>The MMM Logical View describes the details of the key entities and their relationships as shown in Figure 1 below. The Data Model uses the principles from the Functional Requirements for Bibliographic Records [[IFLA-FRBR]] to consistently describe the relationships between these core entities, specifically:</p>
+           
+           <ul>
+             <li>A Composition (Work) is realised through</li>
+               <li>a Recording (Expression), which is embodied in</li>
+               <li>a Media (Manifestation) resource, which are exemplified by</li>
+               <li>a License to use a Media Asset instance (Item).</li>
+           
+           </ul>
+            <p>Note that an Album is a curated compilation of Recordings and that Parties will play a role in almost all the entities.</p>
+            <figure>
+          	<img src="model.png" alt="MMM Logical View" width="800"/>
+            <figcaption>MMM Logical View</figcaption>
+       </figure>
+           
+        <p>The MVD package MAY contain any or all of the shown entities and relationships.
+      
+      As an absolute base-line, some entities will require minimal properties, specifically for the Composition and Recording entities, which are their titles and at least one party. This level of metadata would be considered the minimum to register in the dotBC service. The more properties supplied by the claimant (for all the entities), the better the overall quality as matching entities, and detecting conflicts will improve. This additional level of metadata would be comprised of the most commonly used datasets for commercialization, curated from multiple sources such as music distributors, labels, performing rights organizations, collecting societies, and music publishers.</p>
+          
+           <p>The expected use of the MVD package is to allow for interested parties to submit data about entities of interest. DotBC will follow the Verifiable Claims Data Model [[W3C-CLAIM]] developed by the W3C Credentials Community Group to allow MVD packages to be to be asserted and processed as claims. Interested Parties (the claimants) make these claims and are processed by the dotBC service to produce aggregate data about these entities. The aggregate data is further processed for similarity and conflict. Mentioned parties are also verified (where applicable) and can also provide direct responses (such as approve or deny) to improve the data quality of the MVD claims.</p>
+           
+           <p>All the data in the MVD Package is assumed to be public, that is, any person can see it. If there is data that is confidential then that can still be expressed in the MVD Package for those with the correct credentials to access only. The mechanism for this encryption is described in the <a href="#technical">Technical Architecture section</a>.</p>
+ 
+            <p>There are existing metadata style guides and practices in the industry. Relevant MVD property values MUST follow the Music Metadata Style Guide [[!MBA-STYLE]]. For example, the titles of compositions and recordings may include parenthetical markers, and these should be stripped when matching values.</p>
+            
+        <section id="provenance">
+		 <h3>Provenance</h3>
+            
+        <p>Provenance data allows for the MVP Package to express its origin to support when and who has made the claim. The who is important as this may influence the processing of conflicts and authority levels for trust.</p>
+
+        <p>The MVD properties for Provenance include:</p> 
+           <div class="example">
+               <ul>
+                 <li><b>Date</b> - the date (and time) the claim was made. This property is REQUIRED.</li>
+                 <li><b>Claimant</b> - the identifier of the <code>authorised user</code> who is making the claim. This property is REQUIRED. The Claimant may be an Agent of, or an interested Party in the claim.</li>
+               </ul>
+          </div>      
+        </section>
+        
+    <section id="party">
+		 <h3>Party</h3>
+            
+        <p>Party data allows for the MVP Package to express the interested parties in the Entity. The Party entity is used extensively in other creative entities (such as Composition and Recording). There are a number of properties in describing the Party with links to Professional Rights Organisations that can provide verification services.</p>
+
+        <p>The MVD properties for Party include:</p> 
+           <div class="example">
+                       <ul>
+                     <li><b>Name</b> - the professional name of the Party. This property can either be a text field or the code for an <code>authorised user</code>. If it is the latter, the Party is a known user of the dotBC service.  This property is REQUIRED.</li>
+                    <li><b>Identifier</b> - a formal identifier of the Party. This property MUST use the International Standard Name Identifier (ISNI) to identify parties [[!ISO27729]]</li>
+                    <li><b>Role</b> - what role was played in the creation of the entity. Terms from the CISAC Works Role vocabulary [[!CISAC-TABLE]] MUST be used for a Composition.</li>
+                      <li><b>Share</b> - what percentage share the Party is claiming (or allocated) of the Entity. If there are multiple Parties in the MVD Package, then the total MUST not exceed 100%.</li>
+                      <li><b>PRO</b> - the name of the Professional Rights Organisation (PRO) that represents the Party. This property can either be a text field or the code for an <code>authorised user</code>. If it is the latter, the PRO is a known user of the dotBC service.</li>
+                      <li><b>IPI</b> - the IPI (Interested Party Identifier) used by the PRO to identify this Party. This property MUST only appear if there is a PRO property.</li>
+                       <li><b>Contact</b> - contact information about the Party, such as email and physical address. This field can either by text, or if structured data is provided, it MUST conform to the W3C vCard Ontology [[!VCARD-RDF]]. Note that this information MAY also be provided by the PRO during the verification of the IPI (and is strongly encouraged).</li>
+                        <li><b>Payment</b> -  information about how to pay the Party, for purposes such as royalty payments. This field can either by text, or if structured data is provided, it MUST conform to the Financial Industry Business Ontology [[!FIBO]]. Note that this information MAY also be provided by the PRO during the verification of the IPI (and is strongly encouraged).</li>
+                   <li><b>Social Media</b> - links to accounts held by the Party on Social Media sites.  This property MAY be repeated.</li>
+                   </ul>
+          </div> 
+        
+             <div class="issue" >
+            <p>How do we represent a Band? A new Entity with Party members?</p>
+            <p>Is there a vocabulary for Roles in a Recording (and other entities)?</p>
+          </div>
+        
+        </section>
+        
+           
+      <section id="composition">
+		 <h3>Composition</h3>
+          
+          <p>Composition data expresses properties related to the original musical work and the parties involved.</p>
+          
+           <p>The MVD properties for a Composition include:</p> 
+           <div class="example">
+               <ul>
+                 <li><b>Title</b> - the name of the Composition. This property is REQUIRED.</li>
+                 <li><b>Alternate Title</b> - the alternate title that this Composition is also known as. This property MUST only appear if there is a Title property. This property MAY be repeated.</li>
+                 <li><b>Identifier</b> - the formal identifier for the Composition. The identifier MUST be an International Standard musical Work Code (ISWC) to identify the composition [[!ISO15707]].</li>
+                  <li><b>Date</b> - a date associated with the Composition. The default date is the date the Composition was Written. Other types of dates MAY also be specified. This property MAY be repeated. This property MUST at least include the year and follow the XML Schema Date formats [[!XMLSCHEMA11-2]].</li>
+                  <li><b>Region</b> - the country that the Composition is registered in. This property MUST use a Country Code [[!ISO3166]] or the value "Global" for world-wide. This property MAY be repeated. </li>
+               </ul>
+                 </div>
+          
+
+          
+          <p>The MVD relationships provide linkages between related Compositions as well as identify Recordings that embody the Composition and the Interested Parties, and include:</p> 
+          
+           <div class="example">
+               <ul>
+                    <li><b>Has Interested Party</b> - links to a party involved in the Composition. This property is REQUIRED and MAY be repeated.</li>
+           
+                 <li><b>Derived From</b> - provides an identifier of another Composition that this Composition was derived from. The identifier MUST be an ISWC.</li>
+                    <li><b>Derivative Of</b> - provides an identifier of another Composition that was derived from this Composition. The identifier MUST be an ISWC.</li>
+                    <li><b>Realised By</b> - provides an identifier of a Recording that is a realisation of this Composition. The identifier MUST be an ISRC.</li>
+               </ul>
+          
+          </div>
+          
+           </section>
+     
+       <section id="recording">
+		 <h3>Recording</h3>
+                  
+       <p>Recording data expresses properties related to the song recording (fixation) and the parties involved.</p>
+          
+           <p>The MVD properties for a Recording include:</p> 
+           <div class="example">
+               <ul>
+                   <li><b>Title</b> - the name of the Recording. The title MAY match the name of the related Composition, with additional parenthetical information added. This property is REQUIRED. </li>
+                     <li><b>Subtitle</b> - the subtitle of the Recording to indicate a specific version of the Recording. This property MAY be repeated.</li>
+                 <li><b>Identifier</b> - the formal identifier for the Recording. The identifier MUST be an International Standard Recording Code (ISRC) to identify the recording [[!ISO3901]].</li>
+             <li><b>Date</b> - a date associated with the Recording. The default date is the date the Recording was Released. Other types of dates MAY also be specified, such as the Sale date. This property MAY be repeated. This property MUST at least include the year and follow the XML Schema Date formats [[!XMLSCHEMA11-2]].</li>
+                    <li><b>Duration</b> - that amount of time of the Recording. This property MUST use the XML Schema Duration format [[!XMLSCHEMA11-2]].</li>
+                 <li><b>Territory</b> - the country that the Recording is released in. This property MUST use a Country Code [[!ISO3166]] or the value "Global" for world-wide release. This property MAY be repeated. </li>
+                    <li><b>Genre</b> - the Recording genre. This property MAY be repeated.</li>
+                   <li><b>Copyright Notice</b> - the applicable copyright statement for the Recording. This property MAY be repeated.</li>
+               </ul>
+                 </div>
+          
+   <div class="issue" >
+            <p>Is there a vocabulary for Genre?</p>
+          </div>
+          
+          <p>The MVD relationships provide linkages between related Recordings as well as identifying the source Composition, and include:</p> 
+          
+           <div class="example">
+               <ul>
+                <li><b>Has Interested Party</b> - links to a party involved in the Recording. This property is REQUIRED and MAY be repeated.</li>
+  
+                 <li><b>Realisation Of</b> - provides an identifier of the source Composition that this Recording realises. The identifier MUST be an ISWC.</li>
+                    <li><b>Embodied In</b> - provides an identifier or linkage to the Media resource which embodies this Recording. (how to identify?)</li>
+                    <li><b>Part Of Album</b> - provides an identifier or linkage to an Album entity that this Recording is a part of. (how to identify?).</li>
+               </ul>
+          
+          </div> 
+          
+         
+     </section>   
+
+    <section id="album">
+		 <h3>Album</h3>
+            
+        <p>Album data expresses properties related to the collection of Recordings into a single product.</p>
+        
+           <p>The MVD properties for an Album include:</p> 
+           <div class="example">
+               <ul>
+                 <li><b>Title</b> - the name of the Album. This property is REQUIRED.</li>
+                    <li><b>Subtitle</b> - the subtitle of the Album to indicate a specific version of the Album. This property MAY be repeated.</li>
+                    <li><b>Date</b> - a date associated with the Album. The default date is the date the Album was Released. Other types of dates MAY also be specified, such as the Original Release date, and the Sale date. This property MAY be repeated. This property MUST at least include the year and follow the XML Schema Date formats [[!XMLSCHEMA11-2]].</li>
+                   
+                    <li><b>Label</b> - the name of the Record Label that released the Album.</li>
+                    <li><b>Identifier</b> - the formal identifier of the Album as issued by the Label, such as a Catalogue Number, Universal Product Code (UPC), or Global Release Identifier (GRid) Standard [[IFPI-GRID]].  This property MUST only appear if there is a Label property. This property MAY be repeated.</li>
+                <li><b>Format</b> - the Album format (such as LP or Single).</li>
+                   <li><b>Genre</b> - the Album genre. This property MAY be repeated.</li>
+                  <li><b>Advisory</b> - parental warnings related to the content of the Album.</li>
+                     <li><b>Territory</b> - the country that the Album is released in. This property MUST use a Country Code [[!ISO3166]] or the value "Global" for world-wide release. This property MAY be repeated. </li>
+                      <li><b>Copyright Notice</b> - the applicable copyright statement for the Album. This property MAY be repeated.</li>
+               </ul>
+                 </div>
+          
+<div class="issue" >
+            <p>Is there a vocabulary for Format?</p>
+    <p>Is there a vocabulary for Genre? See the Wikipedia list of <a href="https://en.wikipedia.org/wiki/List_of_popular_music_genres">Music Genres</a></p>
+    <p>If Advisory just a Boolean flag?</p>
+    <p>Should Advisory also be added to Recording?</p>
+          </div>
+          
+          <p>The MVD relationships provide linkages to the related Recordings in the Album, and include:</p> 
+          
+           <div class="example">
+               <ul>
+                    <li><b>Has Artist</b> - links to a Party who is the Primary Artist. This property MAY be repeated.</li>
+                   <li><b>Has Recording</b> - provides an identifier to a Recording. The identifier MUST be an ISRC. This relationship also is sequential and preserves the order of the Recording in the Album.</li>
+                  <li><b>Has Media</b> - provides an identifier or linkage to the Media resources related to this Album.</li>
+               </ul>
+          
+          </div> 
+ 
+        <div class="issue" >
+            <p>Do we need to define the HasArtist role more specifically? Main artist v Featured artist?</p>
+
+          </div>
+        
+         
+     </section>   
+
+           
+    <section id="media">
+		 <h3>Media</h3>
+                  
+        <p>The Media section of the MVD Package supports the attachments of Media asset resources that embody the entity as well as related assets.</p>
+               <p>The MVD properties for Media include:</p> 
+             <div class="example">
+               <ul>
+                <li><b>Master</b> - the normative recording of the entity.</li>
+                <li><b>Stem</b> - an individual part of an entity.</li>
+                <li><b>Clip</b> - a short segment of the entity.</li>
+                <li><b>Video</b> - a video of a performance of the entity.</li>
+                <li><b>Cover Art</b> - an image associated with the entity.</li>
+                <li><b>Session</b> - working recordings used during the production of the entity.</li>
+            </ul>
+        </div>
+     </section>   
+  
+            <div class="issue" >
+            <p>Perhaps these properties should be better defined as Types?</p>
+          </div>
+            
+         <p>The MVD relationships provide linkages to related Media assets, and include:</p> 
+          
+           <div class="example">
+               <ul>
+                    <li><b>Has Version</b> - links a Media asset to a previous version of the media asset.</li>
+               </ul>
+          
+          </div> 
+       
+           
+      <section id="license">
+		 <h3>License</h3>
+                  
+          <p>The License entity will express formal agreements between parties over the use of Media (that embodies a Recording). The MVD Package will utilise the existing W3C Open Digital Rights Language (ODRL) to express the details of the License.
+                   
+                   The W3C ODRL Information Model [[!odrl-model]] and W3C ODRL Vocabulary & Expression [[!vocab-odrl]] provide the normative properties and will be <i>Profiled</i> to develop a specific ODRL Music License Profile.</p> 
+           
+          <p>The core MVD properties for License are summarised here:</p> 
+        
+             <div class="example">
+               <ul>
+                <li><b>Permission</b> - indicates the allowed actions for the assigned Party. For example, <code>Play</code> or <code>Synchronise</code> the target Media asset.</li>
+                <li><b>Prohibition</b> - indicates the dis-allowed actions for the assigned Party.</li>
+                <li><b>Constraint</b> - restricts the scope of the action in the Permission or Prohibition. For example, <code>spatial</code> or <code>temporal</code> constraints.</li>
+                <li><b>Duty</b> - indicates an obligation that must be satisfied (by a Party) for the License to be valid. For example, an obligation to <code>compensate</code> a Party and pay royalties.</li>
+            </ul>
+        </div>
+          
+    
+                <p>The MVD relationships for a License include:</p> 
+          
+           <div class="example">
+               <ul>
+                    <li><b>Has Target Asset</b> - identifies the Media resource or Album that is the Target Asset for the License.</li>
+                    <li><b>Has Party</b> - indicates a Party that is involved in the License and the role. For example, a party could be the <code>assigner</code> or <code>assignee</code> of the License.</li>
+               </ul>
+          
+          </div> 
+          
+     </section>   
+
+           
+           
+           
+        </section>
+            
+      
+             
+   
+    <section id="mvd-examples" class="informative" >
+               
+		 <h1>MVD - Examples</h1>
+           
+    <p>The normative encoding for MVD is JSON-LD [[!JSON-LD]] to support both JSON serialisation environments and to enable Linked Data web services. JSON-LD also supports I18N with the ability to tag human-readable strings with language maps defined by [[!BCP47]].</p>
+        
+          <div class="issue" >
+            <p>These examples - both technically and semantically - are all fictional. They are used to provide illustrative examples only and maybe inconsistent.</p>
+          </div>
+        
+        <p>The Type and Identifier properties are mapped to @type and @id in JSON-LD.</p>
+        <p>In all cases, use of @id to uniquely identify the object is RECOMMENDED.</p>
+ 
+        <section id="example-01">
+     <h2>Composition</h2>
+        
+        <p>The example below shows a simple Composition MVD Package from SOCAN (PRO). Each interested party is identified with SOCAN IPIs in the <b>@id</b> and hence can be fully verified (and all other info about them can be accessed - eg contact info etc).</p>
+
+        
+<div class="example">
+<pre class="highlight hljs xquery">
+{
+   "@context": [
+         "http://dotbc.info/mvd/",
+         { "dbc": "http://dotbc.info/mvd/",
+         }],
+    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
+    "@type": "dbc:Package",
+    "claimBy": [{
+        "@type": "dbc:Provenance",
+        "date": "2016-12-25:12:00",
+        "claimant": "http://dotbc.info/user/socan.ca"
+        }],
+     "hasPart": [{
+        "@type": "dbc:Composition",
+        "@id": "http://iswc.info/T-034.524.680-1",
+        "title": 
+        {
+         "en": "Fly me to the Moon",
+         "fr": "Lance-moi à la Lune"
+        },
+        "region": "North America",
+        "hasInterestedParty": [{
+           "@type": "dbc:Party",
+           "@id": "http://socan.ca/ipi/55555555",
+           "name": "Billie Z",
+           "role": "http::/cisac.org/role/A",
+           "share": "40",
+           "pro": "http://socan.ca",
+           "socialMedia": "http://twitter.com/BillieZ"
+        },
+        {
+           "@type": "dbc:Party",
+           "@id": "http://socan.ca/ipi/666666666",
+           "name": "Murphy Gold",
+           "role": "http::/cisac.org/role/CA",
+           "share": "40",
+           "pro": "http://socan.ca"
+        },
+        {
+           "@type": "dbc:Party",
+           "@id": "http://socan.ca/ipi/777777777",
+           "name": "Corky Music Publishing",
+           "role": "http::/cisac.org/role/E",
+           "share": "20",
+           "pro": "http://socan.ca"
+        }]
+     }]
+}
+</pre>
+</div>
+</section>
+    
+<section id="example-02">
+     <h2>Recording of Composition</h2>
+        
+<p>The example below shows a Recording MVD Package from an independent label. The Recording is based on the above Composition (same ISWC in the realisationOf).  In this case, each interested party fully supplies their contact and banking information (and cannot be verified by an external source). The contact info uses the vCard ontology (we also @type the party with multiple types) and the bank information uses the FIBO ontology. Also part of the MVD Package is the Media associated with this recording (the mp3 master).</p>
+        
+<div class="example">
+<pre class="highlight hljs xquery">
+{
+    "@context": [
+         "http://dotbc.info/mvd/",
+         { "dbc": "http://dotbc.info/mvd/",
+           "vcard": "http://www.w3.org/2006/vcard/ns#",
+           "fibo": "http://www.omg.org/spec/EDMC-FIBO/FBC/ProductsAndServices/ClientsAndAccounts/"
+         }],
+    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-A99999",
+    "@type": "dbc:Package",
+    "claimBy": [{
+        "@type": "dbc:Provenance",
+        "date": "2017-12-24:12:00",
+        "claimant": "http://dotbc.info/user/mary.jane.smith"
+        }],
+     "hasPart": [{
+        "@type": "dbc:Recording",
+        "@id": "http://isrc.info/AUVFJ1600001",
+        "title": "Fly me to the Moon (Rap)",
+        "date": "2017",
+        "duration": "P3:55",
+        "territory": "Canada",
+        "genre": "Rap",
+        "copyright": "Maddie Music Label 2017",
+        "realisationOf": "http://iswc.info/T-034.524.680-1",
+        "partOfAlbum": "Moo Town Records UPC002222011111",
+        "embodiedIn": "#attached-media",
+        "hasInterestedParty": [{
+           "@type": [ "dbc:Party", "vcard:Individual" ],
+           "@id": "http://isni.org/isni/0000000121032683",
+           "name": "Addie Cents",
+           "role": "Singer",
+           "share": "20",
+           "vcard:hasAddress": [{
+                 "@type": [ "vcard:Home", "vcard:Work" ],
+                 "vcard:street-address": "555 1st Street",
+                 "vcard:locality": "FirstTown",
+                 "vcard:postal-code": "5555",
+                 "vcard:country-name": "USA"
+                 }],
+           "vcard:hasEmail": "addie@cents.biz",
+           "vcard:hasTelephone": [{
+               "@type": "vcard:Work",
+               "vcard:value": "555-5555-5555"
+               }],
+            "fibo:holds": [{
+                 "@type": "fibo:Account",
+                 "fibo:isIdentifiedBy": [{
+                       "@type": "fibo:AccountNumber",
+                       "fibo:identifies": "54233-29928-2222"
+                 }],
+                 "fibo:hasPartyInRole": [{
+                       "@type": "fibo:AccountProvider",
+                       "fibo:isPlayedBy": "Bank Of Great Profits"
+                    },{
+                       "@type": "fibo:AccountHolder",
+                       "fibo:isPlayedBy": "Addie Cents"
+                 }]
+              }]
+        },
+        {
+           "@type": [ "dbc:Party", "vcard:Organization" ],
+           "@id": "http://isni.org/isni/0000000121998877",
+           "name": "Maddie Music Label",
+           "role": "Label",
+           "share": "80",
+           "vcard:hasAddress": [{
+                 "@type": "vcard:Work",
+                 "vcard:street-address": "111 5th Street",
+                 "vcard:locality": "SecondTown",
+                 "vcard:postal-code": "4444",
+                 "vcard:country-name": "USA"
+                 }],
+           "vcard:hasEmail": "maddie@label.biz",
+           "vcard:hasTelephone": [{
+               "@type": "vcard:Work",
+               "vcard:value": "555-4444-4444"
+               }],
+          "fibo:holds": [{
+                 "@type": "fibo:Account",
+                 "fibo:isIdentifiedBy": [{
+                       "@type": "fibo:AccountNumber",
+                       "fibo:identifies": "54233-99999-98888"
+                 }],
+                 "fibo:hasPartyInRole": [{
+                       "@type": "fibo:AccountProvider",
+                       "fibo:isPlayedBy": "Bank Of Even Greater Profits"
+                    },{
+                       "@type": "fibo:AccountHolder",
+                       "fibo:isPlayedBy": "Maddie Music LLC"
+                 }]
+              }]
+        }]
+     },
+     {
+     "@type": "dbc:Media",
+     "@id": "#attached-media",
+     "master": "#media/Master/AUVFJ1600001.mp3"
+     }]
+}
+</pre>
+</div>
+    
+       
+          <div class="issue" >
+            <p>Is the use of FIBO warranted, or should we define our own properties?</p>
+          </div>
+    
+        </section>
+        
+        
+               <section id="example-03">
+     <h2>Album</h2>
+                   
+<p>The example below shows the Album MVD Package from a Label. The Album links to the ten actual recordings via their ISRC identifiers. There is also an associated Media package with the cover art of the Album. </p>
+
+<div class="example">
+<pre class="highlight hljs xquery">
+{
+    "@context": [
+         "http://dotbc.info/mvd/",
+         { "dbc": "http://dotbc.info/mvd/"
+         }],
+    "@id": "http://dotbc.info/mvd/BC0543B-3F09-4552-830B-36363636",
+    "@type": "dbc:Package",
+    "claimBy": [{
+        "@type": "dbc:Provenance",
+        "date": "2017-01-24:12:00",
+        "claimant": "http://dotbc.info/user/mooo-town-records"
+        }],
+     "hasPart": [{
+        "@type": "dbc:Album",
+        "title": "Wish You Were Here",
+        "date": [{
+            "@type": "dbc:Release",
+            "date": "2010-01-030"
+            }, {
+            "@type": "dbc:Sale",
+            "date": "2010-05-10"
+            } ],
+        "label": "Moo Town Records",
+        "identifier": [ "UPC00222201111", "GRID:A1-2425G-ABC1234002-M"],
+        "format": "LP",
+        "genre": [ "Pop", "Rock"],
+        "copyright": [ "Moo Town Records 2010", "Moo Town LLC, 2010"],
+        "advisory": "May contain pictures of cats",
+        "territory": "dbc:Global",
+        "hasMedia": "#attached-media",
+        "hasArtist": [{
+            "@type": "dbc:Party",
+            "@id": "http://socan.ca/ipi/55555555"
+            }],
+        "hasRecording": [
+            "http://isrc.info/AUVFJ1600001",
+            "http://isrc.info/AUVFJ1600002",
+            "http://isrc.info/AUVFJ1600003",
+            "http://isrc.info/AUVFJ1600004",
+            "http://isrc.info/AUVFJ1600005",
+            "http://isrc.info/AUVFJ1600006",
+            "http://isrc.info/AUVFJ1600007",
+            "http://isrc.info/AUVFJ1600008",
+            "http://isrc.info/AUVFJ1600009",
+            "http://isrc.info/AUVFJ1600010"]
+       },
+      {
+     "@type": "dbc:Media",
+     "@id": "#attached-media",
+     "coverArt": [ 
+         "#media/Cover/front-cover.jpg",
+         "#media/Cover/inside-cover.jpg",
+         "#media/Cover/back-cover.jpg" ]
+    }]
+}
+</pre>
+</div>
+                   
+                   
+</section>
+        
+</section>
+             
+<section id="change">
+<h1>MVD - Change Request</h1>
+
+    <p>A fundamental function of DotBC is the ability for Parties to make counter-claims over an existing  MVD package. These may be as simple as (important) data errors (such as the incorrect release date) or challenges to significant roles (such as who was the Lead Producer and Share distributions).</p>
+  
+    <p>A Change Request will indicate the source @id of the original MVD Package and MUST only include the specified properties that are the subject of the change. The Change Request MUST include the @id of any contained objects.</p>
+    
+     <p>There are three main Change Request types:</p> 
+        
+    <div class="example">
+     <ul>
+         <li><b>Add</b> - the properties MAY be added to the MVD Package (and MUST not  already exist in the original MVD Package).</li>
+        <li><b>Remove</b> - the properties MAY be removed from the MVD Package (and MUST  already exist in the original MVD Package).</li>
+       <li><b>Update</b> - the properties MAY update existing properties in the MVD Package (and MUST   already exist in the original MVD Package).</li>
+    </ul>
+    </div>
+
+     <p>Note: This specification cover the expression of a Change Request but does not include details on how the Change Request is processed (such as the determination of consensus amongst multiple Parties).</p>
+    
+ <p></p>
+    
+    
+    
+    <section id="change-examples">
+    <h1>Examples</h1>
+ <p>Consider the below Change Request (CR) about the <a href="#example-01">Composition example</a> shown above. This CR proposes to Add a date property to the original MVD Package.</p>      
+        
+    <div class="example">
+<pre class="highlight hljs xquery">
+{
+   "@context": [
+         "http://dotbc.info/mvd/",
+         { "dbc": "http://dotbc.info/mvd/",
+         }],
+    "@id": "http://dotbc.info/mvd/BCE0543B-3X09-4552-830Q-9951",
+    "@type": "dbc:Package",
+    "claimBy": [{
+        "@type": "dbc:Provenance",
+        "date": "2017-02-25:12:00",
+        "claimant": "http://dotbc.info/user/billie.music"
+        }],
+     "hasPart": [{
+        "@type": "dbc:CR:Add",
+        "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
+        "date": "2000"
+     }]
+}
+</pre>
+</div>
+        
+        
+<p>Consider the below Change Request (CR) about the <a href="#example-03">Album example</a> shown above. This CR proposes to Remove one of the Genre properties in the original MVD Package.</p>      
+        
+    <div class="example">
+<pre class="highlight hljs xquery">
+{
+   "@context": [
+         "http://dotbc.info/mvd/",
+         { "dbc": "http://dotbc.info/mvd/",
+         }],
+    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
+    "@type": "dbc:Package",
+    "claimBy": [{
+        "@type": "dbc:Provenance",
+        "date": "2017-03-01:12:00",
+        "claimant": "http://dotbc.info/user/billie.music"
+        }],
+     "hasPart": [{
+        "@type": "dbc:CR:Remove",
+        "@id": "http://dotbc.info/mvd/BC0543B-3F09-4552-830B-36363636",
+        "genre": "Rock"
+     }]
+}
+</pre>
+</div>
+      
+ <p>Consider the below Change Request (CR) about the <a href="#example-02">Recording example</a> shown above. This CR proposes to Update the Share properties for the two Interested Parties in the original MVD Package. </p>      
+        
+    <div class="example">
+<pre class="highlight hljs xquery">
+{
+   "@context": [
+         "http://dotbc.info/mvd/",
+         { "dbc": "http://dotbc.info/mvd/",
+         }],
+    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
+    "@type": "dbc:Package",
+    "claimBy": [{
+        "@type": "dbc:Provenance",
+        "date": "2017-03-01:12:00",
+        "claimant": "http://dotbc.info/user/billie.music"
+        }],
+     "hasPart": [{
+        "@type": "dbc:CR:Update",
+        "hasInterestedParty": [{
+           "@id": "http://isni.org/isni/0000000121032683",
+           "share": "30"
+           },
+           {
+           "@id": "http://isni.org/isni/0000000121998877",
+           "share": "70",
+           }]
+     }]
+}
+</pre>
+</div>
+        
+        
+    </section>
+    
+ </section>
+        
+        
+<section class="appendix">
+<h1>Acknowledgements</h1>
+        <p></p>    
+</section>
+        
+	</body>
+</html>
+	
