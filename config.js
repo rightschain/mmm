@@ -1,5 +1,5 @@
 var respecConfig = {
-    specStatus: "WD",
+    specStatus: "ED",
     shortName: "mmm",
     edDraftURI: "https://rightschain.github.io/mmm/",
     editors: [ {   name:       "Renato Iannella",

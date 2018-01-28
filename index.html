@@ -5,7 +5,10 @@
         
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <!--
     <script class="remove" src="https://rightschain.github.io/respec/builds/respec-w3c-common.js" defer></script>
+  -->
+    <script class="remove" src="../Github-respec/builds/respec-w3c-common.js" defer></script>
     <script class="remove" src="config.js"></script>
         
 	</head>
@@ -31,12 +34,12 @@
                 
 <p>The foundation of the future digital music business is data. The ideal being a federated system of interoperable datasets, in which each stakeholder in the system communicates authoritative, normalized data to other participants in the system with minimal human intervention required. The current state of music data is far from that ideal, as the different vertical systems are not interoperable, and the data at individual organisations within those verticals is rife with errors, and ambiguity. To make matters more complicated, organisation also operate at very different levels of technology adoption, and the industry has been incredibly slow in dealing with these challenges. </p>
 
-            <p>DotBlockchain (dotBC) music is creating a service that leverages the power of emerging technologies (such as the blockchain ledger) to create a standard set of "metadata gauges" for the industry to operate on at all levels of sophistication. It provides control to the owners, and transparency to all stakeholders were required.
+            <p>RightsChain is supporting a service that leverages the power of emerging technologies (such as the blockchain ledger) to create a standard set of "metadata gauges" for the industry to operate on at all levels of sophistication. It provides control to the owners, and transparency to all stakeholders were required.
             </p>
 <p>The problems resolved by the these emerging technologies are dependent on the underlying music datasets, and what is required for each stakeholder. Establishing manageable metadata sets that are both backwards-compatible and forward-looking are equally critical in order to address the industry needs. </p>
 
 <p>
-The amount of metadata that can be associated with musical works or master recordings is endless. However, dotBC is concerned with the essential functions of identifying the original and current owner(s) of a composition or master, and to match of the correct master to the correct composition. DotBC defines the Minimum Viable Data (MVD) to establish sufficient requirements for data exchange to enable unambiguous identification of entities and their relationships </p>
+The amount of metadata that can be associated with musical works or master recordings is endless. However, MMM is concerned with the essential functions of identifying the original and current owner(s) of a composition or master, and to match of the correct master to the correct composition. MMM defines and establishes sufficient requirements for data exchange to enable unambiguous identification of entities and their relationships </p>
 
 
             
@@ -46,11 +49,11 @@ The amount of metadata that can be associated with musical works or master recor
                     
         
         <section id="logical-model">
-		 <h1>Music Metadata Model (MMM) - Logical View</h1>
+		 <h1>Music Metadata Model (MMM)</h1>
             
           
             
-          <p>The MMM Logical View describes the details of the key entities and their relationships as shown in Figure 1 below. The Data Model uses the principles from the Functional Requirements for Bibliographic Records [[IFLA-FRBR]] to consistently describe the relationships between these core entities, specifically:</p>
+          <p>The MMM logical View describes the details of the key entities and their relationships as shown in Figure 1 below. The Data Model uses the principles from the Functional Requirements for Bibliographic Records [[IFLA-FRBR]] to consistently describe the relationships between these core entities, specifically:</p>
            
            <ul>
              <li>A Composition (Work) is realised through</li>
@@ -65,22 +68,22 @@ The amount of metadata that can be associated with musical works or master recor
             <figcaption>MMM Logical View</figcaption>
        </figure>
            
-        <p>The MVD package MAY contain any or all of the shown entities and relationships.
+        <p>The MMM package MAY contain any or all of the shown entities and relationships.
       
-      As an absolute base-line, some entities will require minimal properties, specifically for the Composition and Recording entities, which are their titles and at least one party. This level of metadata would be considered the minimum to register in the dotBC service. The more properties supplied by the claimant (for all the entities), the better the overall quality as matching entities, and detecting conflicts will improve. This additional level of metadata would be comprised of the most commonly used datasets for commercialization, curated from multiple sources such as music distributors, labels, performing rights organizations, collecting societies, and music publishers.</p>
+      As an absolute base-line, some entities will require minimal properties, specifically for the Composition and Recording entities, which are their titles and at least one party. This level of metadata would be considered the minimum to register in a Distributed Ledger Technology (DLT) service. The more properties supplied by the claimant (for all the entities), the better the overall quality as matching entities, and detecting conflicts will improve. This additional level of metadata would be comprised of the most commonly used datasets for commercialization, curated from multiple sources such as music distributors, labels, performing rights organizations, collecting societies, and music publishers.</p>
           
-           <p>The expected use of the MVD package is to allow for interested parties to submit data about entities of interest. DotBC will follow the Verifiable Claims Data Model [[W3C-CLAIM]] developed by the W3C Credentials Community Group to allow MVD packages to be to be asserted and processed as claims. Interested Parties (the claimants) make these claims and are processed by the dotBC service to produce aggregate data about these entities. The aggregate data is further processed for similarity and conflict. Mentioned parties are also verified (where applicable) and can also provide direct responses (such as approve or deny) to improve the data quality of the MVD claims.</p>
+           <p>The expected use of the MMM package is to allow for interested parties to submit data about entities of interest. MMM will follow the Verifiable Claims Data Model [[W3C-CLAIM]] developed by the W3C Credentials Community Group to allow MMM packages to be to be asserted and processed as claims. Interested Parties (the claimants) make these claims and are processed by the DLT service to produce aggregate data about these entities. The aggregate data is further processed for similarity and conflict. Mentioned parties are also verified (where applicable) and can also provide direct responses (such as approve or deny) to improve the data quality of the MMM claims.</p>
            
-           <p>All the data in the MVD Package is assumed to be public, that is, any person can see it. If there is data that is confidential then that can still be expressed in the MVD Package for those with the correct credentials to access only. The mechanism for this encryption is described in the <a href="#technical">Technical Architecture section</a>.</p>
+           <p>All the data in the MMM Package is assumed to be public, that is, any person can see it. If there is data that is confidential then that can still be expressed in the MMM Package for those with the correct credentials to access only. The mechanism for this encryption is described in the <a href="#technical">Technical Architecture section</a>.</p>
  
-            <p>There are existing metadata style guides and practices in the industry. Relevant MVD property values MUST follow the Music Metadata Style Guide [[!MBA-STYLE]]. For example, the titles of compositions and recordings may include parenthetical markers, and these should be stripped when matching values.</p>
+            <p>There are existing metadata style guides and practices in the industry. Relevant MMM property values MUST follow the Music Metadata Style Guide [[!MBA-STYLE]]. For example, the titles of compositions and recordings may include parenthetical markers, and these should be stripped when matching values.</p>
             
         <section id="provenance">
 		 <h3>Provenance</h3>
             
-        <p>Provenance data allows for the MVP Package to express its origin to support when and who has made the claim. The who is important as this may influence the processing of conflicts and authority levels for trust.</p>
+        <p>Provenance data allows for the MMM Package to express its origin to support when and who has made the claim. The who is important as this may influence the processing of conflicts and authority levels for trust.</p>
 
-        <p>The MVD properties for Provenance include:</p> 
+        <p>The MMM properties for Provenance include:</p> 
            <div class="example">
                <ul>
                  <li><b>Date</b> - the date (and time) the claim was made. This property is REQUIRED.</li>
@@ -92,16 +95,16 @@ The amount of metadata that can be associated with musical works or master recor
     <section id="party">
 		 <h3>Party</h3>
             
-        <p>Party data allows for the MVP Package to express the interested parties in the Entity. The Party entity is used extensively in other creative entities (such as Composition and Recording). There are a number of properties in describing the Party with links to Professional Rights Organisations that can provide verification services.</p>
+        <p>Party data allows for the MMM Package to express the interested parties in the Entity. The Party entity is used extensively in other creative entities (such as Composition and Recording). There are a number of properties in describing the Party with links to Professional Rights Organisations that can provide verification services.</p>
 
-        <p>The MVD properties for Party include:</p> 
+        <p>The MMM properties for Party include:</p> 
            <div class="example">
                        <ul>
-                     <li><b>Name</b> - the professional name of the Party. This property can either be a text field or the code for an <code>authorised user</code>. If it is the latter, the Party is a known user of the dotBC service.  This property is REQUIRED.</li>
+                     <li><b>Name</b> - the professional name of the Party. This property can either be a text field or the code for an <code>authorised user</code>. If it is the latter, the Party is a known user of the DLT service.  This property is REQUIRED.</li>
                     <li><b>Identifier</b> - a formal identifier of the Party. This property MUST use the International Standard Name Identifier (ISNI) to identify parties [[!ISO27729]]</li>
                     <li><b>Role</b> - what role was played in the creation of the entity. Terms from the CISAC Works Role vocabulary [[!CISAC-TABLE]] MUST be used for a Composition.</li>
-                      <li><b>Share</b> - what percentage share the Party is claiming (or allocated) of the Entity. If there are multiple Parties in the MVD Package, then the total MUST not exceed 100%.</li>
-                      <li><b>PRO</b> - the name of the Professional Rights Organisation (PRO) that represents the Party. This property can either be a text field or the code for an <code>authorised user</code>. If it is the latter, the PRO is a known user of the dotBC service.</li>
+                      <li><b>Share</b> - what percentage share the Party is claiming (or allocated) of the Entity. If there are multiple Parties in the MMM Package, then the total MUST not exceed 100%.</li>
+                      <li><b>PRO</b> - the name of the Professional Rights Organisation (PRO) that represents the Party. This property can either be a text field or the code for an <code>authorised user</code>. If it is the latter, the PRO is a known user of the DLT service.</li>
                       <li><b>IPI</b> - the IPI (Interested Party Identifier) used by the PRO to identify this Party. This property MUST only appear if there is a PRO property.</li>
                        <li><b>Contact</b> - contact information about the Party, such as email and physical address. This field can either by text, or if structured data is provided, it MUST conform to the W3C vCard Ontology [[!VCARD-RDF]]. Note that this information MAY also be provided by the PRO during the verification of the IPI (and is strongly encouraged).</li>
                         <li><b>Payment</b> -  information about how to pay the Party, for purposes such as royalty payments. This field can either by text, or if structured data is provided, it MUST conform to the Financial Industry Business Ontology [[!FIBO]]. Note that this information MAY also be provided by the PRO during the verification of the IPI (and is strongly encouraged).</li>
@@ -122,7 +125,7 @@ The amount of metadata that can be associated with musical works or master recor
           
           <p>Composition data expresses properties related to the original musical work and the parties involved.</p>
           
-           <p>The MVD properties for a Composition include:</p> 
+           <p>The MMM properties for a Composition include:</p> 
            <div class="example">
                <ul>
                  <li><b>Title</b> - the name of the Composition. This property is REQUIRED.</li>
@@ -135,7 +138,7 @@ The amount of metadata that can be associated with musical works or master recor
           
 
           
-          <p>The MVD relationships provide linkages between related Compositions as well as identify Recordings that embody the Composition and the Interested Parties, and include:</p> 
+          <p>The MMM relationships provide linkages between related Compositions as well as identify Recordings that embody the Composition and the Interested Parties, and include:</p> 
           
            <div class="example">
                <ul>
@@ -155,7 +158,7 @@ The amount of metadata that can be associated with musical works or master recor
                   
        <p>Recording data expresses properties related to the song recording (fixation) and the parties involved.</p>
           
-           <p>The MVD properties for a Recording include:</p> 
+           <p>The MMM properties for a Recording include:</p> 
            <div class="example">
                <ul>
                    <li><b>Title</b> - the name of the Recording. The title MAY match the name of the related Composition, with additional parenthetical information added. This property is REQUIRED. </li>
@@ -173,7 +176,7 @@ The amount of metadata that can be associated with musical works or master recor
             <p>Is there a vocabulary for Genre?</p>
           </div>
           
-          <p>The MVD relationships provide linkages between related Recordings as well as identifying the source Composition, and include:</p> 
+          <p>The MMM relationships provide linkages between related Recordings as well as identifying the source Composition, and include:</p> 
           
            <div class="example">
                <ul>
@@ -194,7 +197,7 @@ The amount of metadata that can be associated with musical works or master recor
             
         <p>Album data expresses properties related to the collection of Recordings into a single product.</p>
         
-           <p>The MVD properties for an Album include:</p> 
+           <p>The MMM properties for an Album include:</p> 
            <div class="example">
                <ul>
                  <li><b>Title</b> - the name of the Album. This property is REQUIRED.</li>
@@ -218,7 +221,7 @@ The amount of metadata that can be associated with musical works or master recor
     <p>Should Advisory also be added to Recording?</p>
           </div>
           
-          <p>The MVD relationships provide linkages to the related Recordings in the Album, and include:</p> 
+          <p>The MMM relationships provide linkages to the related Recordings in the Album, and include:</p> 
           
            <div class="example">
                <ul>
@@ -241,8 +244,8 @@ The amount of metadata that can be associated with musical works or master recor
     <section id="media">
 		 <h3>Media</h3>
                   
-        <p>The Media section of the MVD Package supports the attachments of Media asset resources that embody the entity as well as related assets.</p>
-               <p>The MVD properties for Media include:</p> 
+        <p>The Media section of the MMM Package supports the attachments of Media asset resources that embody the entity as well as related assets.</p>
+               <p>The MMM properties for Media include:</p> 
              <div class="example">
                <ul>
                 <li><b>Master</b> - the normative recording of the entity.</li>
@@ -259,7 +262,7 @@ The amount of metadata that can be associated with musical works or master recor
             <p>Perhaps these properties should be better defined as Types?</p>
           </div>
             
-         <p>The MVD relationships provide linkages to related Media assets, and include:</p> 
+         <p>The MMM relationships provide linkages to related Media assets, and include:</p> 
           
            <div class="example">
                <ul>
@@ -272,23 +275,24 @@ The amount of metadata that can be associated with musical works or master recor
       <section id="license">
 		 <h3>License</h3>
                   
-          <p>The License entity will express formal agreements between parties over the use of Media (that embodies a Recording). The MVD Package will utilise the existing W3C Open Digital Rights Language (ODRL) to express the details of the License.
+          <p>The License entity will express formal agreements between parties over the use of Media (that embodies a Recording). The MMM Package will utilise the existing W3C Open Digital Rights Language (ODRL) to express the details of the License.
                    
                    The W3C ODRL Information Model [[!odrl-model]] and W3C ODRL Vocabulary & Expression [[!vocab-odrl]] provide the normative properties and will be <i>Profiled</i> to develop a specific ODRL Music License Profile.</p> 
            
-          <p>The core MVD properties for License are summarised here:</p> 
+          <p>The core MMM properties for License are summarised here:</p> 
         
              <div class="example">
                <ul>
-                <li><b>Permission</b> - indicates the allowed actions for the assigned Party. For example, <code>Play</code> or <code>Synchronise</code> the target Media asset.</li>
-                <li><b>Prohibition</b> - indicates the dis-allowed actions for the assigned Party.</li>
-                <li><b>Constraint</b> - restricts the scope of the action in the Permission or Prohibition. For example, <code>spatial</code> or <code>temporal</code> constraints.</li>
+                <li><b>Permission</b> - indicates the allowed actions. For example, <code>Play</code> or <code>Synchronise</code> the target Media asset.</li>
+                <li><b>Prohibition</b> - indicates the dis-allowed actions.</li>
+                <li><b>Constraint</b> - refines the scope of the action in, or a condition on, the Permission or Prohibition. For example, <code>spatial</code> or <code>temporal</code> constraints.</li>
                 <li><b>Duty</b> - indicates an obligation that must be satisfied (by a Party) for the License to be valid. For example, an obligation to <code>compensate</code> a Party and pay royalties.</li>
+                <li><b>Party</b> - the functional roles involved on the License policy.</li>
             </ul>
         </div>
           
     
-                <p>The MVD relationships for a License include:</p> 
+                <p>The MMM relationships for a License include:</p> 
           
            <div class="example">
                <ul>
@@ -308,11 +312,11 @@ The amount of metadata that can be associated with musical works or master recor
       
              
    
-    <section id="mvd-examples" class="informative" >
+    <section id="MMM-examples" class="informative" >
                
-		 <h1>MVD - Examples</h1>
+		 <h1>MMM - Examples</h1>
            
-    <p>The normative encoding for MVD is JSON-LD [[!JSON-LD]] to support both JSON serialisation environments and to enable Linked Data web services. JSON-LD also supports I18N with the ability to tag human-readable strings with language maps defined by [[!BCP47]].</p>
+    <p>The normative encoding for MMM is JSON-LD [[!JSON-LD]] to support both JSON serialisation environments and to enable Linked Data web services. JSON-LD also supports I18N with the ability to tag human-readable strings with language maps defined by [[!BCP47]].</p>
         
           <div class="issue" >
             <p>These examples - both technically and semantically - are all fictional. They are used to provide illustrative examples only and maybe inconsistent.</p>
@@ -324,25 +328,25 @@ The amount of metadata that can be associated with musical works or master recor
         <section id="example-01">
      <h2>Composition</h2>
         
-        <p>The example below shows a simple Composition MVD Package from SOCAN (PRO). Each interested party is identified with SOCAN IPIs in the <b>@id</b> and hence can be fully verified (and all other info about them can be accessed - eg contact info etc).</p>
+        <p>The example below shows a simple Composition MMM Package from SOCAN (PRO). Each interested party is identified with SOCAN IPIs in the <b>@id</b> and hence can be fully verified (and all other info about them can be accessed - eg contact info etc).</p>
 
         
 <div class="example">
 <pre class="highlight hljs xquery">
 {
    "@context": [
-         "http://dotbc.info/mvd/",
-         { "dbc": "http://dotbc.info/mvd/",
+         "http://rightschain.info/mmm/",
+         { "mmm": "http://rightschain.info/mmm/",
          }],
-    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
-    "@type": "dbc:Package",
+    "@id": "http://example.com/mmm/BCE0543B-3F09-4552-830B-70B00",
+    "@type": "mmm:Package",
     "claimBy": [{
-        "@type": "dbc:Provenance",
+        "@type": "mmm:Provenance",
         "date": "2016-12-25:12:00",
-        "claimant": "http://dotbc.info/user/socan.ca"
+        "claimant": "http://example.com/user/socan.ca"
         }],
      "hasPart": [{
-        "@type": "dbc:Composition",
+        "@type": "mmm:Composition",
         "@id": "http://iswc.info/T-034.524.680-1",
         "title": 
         {
@@ -351,7 +355,7 @@ The amount of metadata that can be associated with musical works or master recor
         },
         "region": "North America",
         "hasInterestedParty": [{
-           "@type": "dbc:Party",
+           "@type": "mmm:Party",
            "@id": "http://socan.ca/ipi/55555555",
            "name": "Billie Z",
            "role": "http::/cisac.org/role/A",
@@ -360,7 +364,7 @@ The amount of metadata that can be associated with musical works or master recor
            "socialMedia": "http://twitter.com/BillieZ"
         },
         {
-           "@type": "dbc:Party",
+           "@type": "mmm:Party",
            "@id": "http://socan.ca/ipi/666666666",
            "name": "Murphy Gold",
            "role": "http::/cisac.org/role/CA",
@@ -368,7 +372,7 @@ The amount of metadata that can be associated with musical works or master recor
            "pro": "http://socan.ca"
         },
         {
-           "@type": "dbc:Party",
+           "@type": "mmm:Party",
            "@id": "http://socan.ca/ipi/777777777",
            "name": "Corky Music Publishing",
            "role": "http::/cisac.org/role/E",
@@ -384,26 +388,26 @@ The amount of metadata that can be associated with musical works or master recor
 <section id="example-02">
      <h2>Recording of Composition</h2>
         
-<p>The example below shows a Recording MVD Package from an independent label. The Recording is based on the above Composition (same ISWC in the realisationOf).  In this case, each interested party fully supplies their contact and banking information (and cannot be verified by an external source). The contact info uses the vCard ontology (we also @type the party with multiple types) and the bank information uses the FIBO ontology. Also part of the MVD Package is the Media associated with this recording (the mp3 master).</p>
+<p>The example below shows a Recording MMM Package from an independent label. The Recording is based on the above Composition (same ISWC in the realisationOf).  In this case, each interested party fully supplies their contact and banking information (and cannot be verified by an external source). The contact info uses the vCard ontology (we also @type the party with multiple types) and the bank information uses the FIBO ontology. Also part of the MMM Package is the Media associated with this recording (the mp3 master).</p>
         
 <div class="example">
 <pre class="highlight hljs xquery">
 {
     "@context": [
-         "http://dotbc.info/mvd/",
-         { "dbc": "http://dotbc.info/mvd/",
+         "http://rightschain.info/mmm/",
+         { "mmm": "http://rightschain.info/mmmm/",
            "vcard": "http://www.w3.org/2006/vcard/ns#",
            "fibo": "http://www.omg.org/spec/EDMC-FIBO/FBC/ProductsAndServices/ClientsAndAccounts/"
          }],
-    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-A99999",
-    "@type": "dbc:Package",
+    "@id": "http://example.com/mmm/BCE0543B-3F09-4552-A99999",
+    "@type": "mmm:Package",
     "claimBy": [{
-        "@type": "dbc:Provenance",
+        "@type": "mmm:Provenance",
         "date": "2017-12-24:12:00",
-        "claimant": "http://dotbc.info/user/mary.jane.smith"
+        "claimant": "http://example.com/user/mary.jane.smith"
         }],
      "hasPart": [{
-        "@type": "dbc:Recording",
+        "@type": "mmm:Recording",
         "@id": "http://isrc.info/AUVFJ1600001",
         "title": "Fly me to the Moon (Rap)",
         "date": "2017",
@@ -415,7 +419,7 @@ The amount of metadata that can be associated with musical works or master recor
         "partOfAlbum": "Moo Town Records UPC002222011111",
         "embodiedIn": "#attached-media",
         "hasInterestedParty": [{
-           "@type": [ "dbc:Party", "vcard:Individual" ],
+           "@type": [ "mmm:Party", "vcard:Individual" ],
            "@id": "http://isni.org/isni/0000000121032683",
            "name": "Addie Cents",
            "role": "Singer",
@@ -448,7 +452,7 @@ The amount of metadata that can be associated with musical works or master recor
               }]
         },
         {
-           "@type": [ "dbc:Party", "vcard:Organization" ],
+           "@type": [ "mmm:Party", "vcard:Organization" ],
            "@id": "http://isni.org/isni/0000000121998877",
            "name": "Maddie Music Label",
            "role": "Label",
@@ -482,7 +486,7 @@ The amount of metadata that can be associated with musical works or master recor
         }]
      },
      {
-     "@type": "dbc:Media",
+     "@type": "mmm:Media",
      "@id": "#attached-media",
      "master": "#media/Master/AUVFJ1600001.mp3"
      }]
@@ -501,30 +505,30 @@ The amount of metadata that can be associated with musical works or master recor
                <section id="example-03">
      <h2>Album</h2>
                    
-<p>The example below shows the Album MVD Package from a Label. The Album links to the ten actual recordings via their ISRC identifiers. There is also an associated Media package with the cover art of the Album. </p>
+<p>The example below shows the Album MMM Package from a Label. The Album links to the ten actual recordings via their ISRC identifiers. There is also an associated Media package with the cover art of the Album. </p>
 
 <div class="example">
 <pre class="highlight hljs xquery">
 {
     "@context": [
-         "http://dotbc.info/mvd/",
-         { "dbc": "http://dotbc.info/mvd/"
+         "http://rightschain.info/mmm/",
+         { "mmm": "http://rightschain.info/mmm/"
          }],
-    "@id": "http://dotbc.info/mvd/BC0543B-3F09-4552-830B-36363636",
-    "@type": "dbc:Package",
+    "@id": "http://example.com/mmm/BC0543B-3F09-4552-830B-36363636",
+    "@type": "mmm:Package",
     "claimBy": [{
-        "@type": "dbc:Provenance",
+        "@type": "mmm:Provenance",
         "date": "2017-01-24:12:00",
-        "claimant": "http://dotbc.info/user/mooo-town-records"
+        "claimant": "http://rightschain.info/user/mooo-town-records"
         }],
      "hasPart": [{
-        "@type": "dbc:Album",
+        "@type": "mmm:Album",
         "title": "Wish You Were Here",
         "date": [{
-            "@type": "dbc:Release",
+            "@type": "mmm:Release",
             "date": "2010-01-030"
             }, {
-            "@type": "dbc:Sale",
+            "@type": "mmm:Sale",
             "date": "2010-05-10"
             } ],
         "label": "Moo Town Records",
@@ -533,10 +537,10 @@ The amount of metadata that can be associated with musical works or master recor
         "genre": [ "Pop", "Rock"],
         "copyright": [ "Moo Town Records 2010", "Moo Town LLC, 2010"],
         "advisory": "May contain pictures of cats",
-        "territory": "dbc:Global",
+        "territory": "mmm:Global",
         "hasMedia": "#attached-media",
         "hasArtist": [{
-            "@type": "dbc:Party",
+            "@type": "mmm:Party",
             "@id": "http://socan.ca/ipi/55555555"
             }],
         "hasRecording": [
@@ -552,7 +556,7 @@ The amount of metadata that can be associated with musical works or master recor
             "http://isrc.info/AUVFJ1600010"]
        },
       {
-     "@type": "dbc:Media",
+     "@type": "mmm:Media",
      "@id": "#attached-media",
      "coverArt": [ 
          "#media/Cover/front-cover.jpg",
@@ -569,19 +573,19 @@ The amount of metadata that can be associated with musical works or master recor
 </section>
              
 <section id="change">
-<h1>MVD - Change Request</h1>
+<h1>MMM - Change Request</h1>
 
-    <p>A fundamental function of DotBC is the ability for Parties to make counter-claims over an existing  MVD package. These may be as simple as (important) data errors (such as the incorrect release date) or challenges to significant roles (such as who was the Lead Producer and Share distributions).</p>
+    <p>A fundamental function of a DLT service is the ability for Parties to make counter-claims over an existing  MMM package. These may be as simple as (important) data errors (such as the incorrect release date) or challenges to significant roles (such as who was the Lead Producer and Share distributions).</p>
   
-    <p>A Change Request will indicate the source @id of the original MVD Package and MUST only include the specified properties that are the subject of the change. The Change Request MUST include the @id of any contained objects.</p>
+    <p>A Change Request will indicate the source @id of the original MMM Package and MUST only include the specified properties that are the subject of the change. The Change Request MUST include the @id of any contained objects.</p>
     
      <p>There are three main Change Request types:</p> 
         
     <div class="example">
      <ul>
-         <li><b>Add</b> - the properties MAY be added to the MVD Package (and MUST not  already exist in the original MVD Package).</li>
-        <li><b>Remove</b> - the properties MAY be removed from the MVD Package (and MUST  already exist in the original MVD Package).</li>
-       <li><b>Update</b> - the properties MAY update existing properties in the MVD Package (and MUST   already exist in the original MVD Package).</li>
+         <li><b>Add</b> - the properties MAY be added to the MMM Package (and MUST not  already exist in the original MMM Package).</li>
+        <li><b>Remove</b> - the properties MAY be removed from the MMM Package (and MUST  already exist in the original MMM Package).</li>
+       <li><b>Update</b> - the properties MAY update existing properties in the MMM Package (and MUST   already exist in the original MMM Package).</li>
     </ul>
     </div>
 
@@ -593,25 +597,25 @@ The amount of metadata that can be associated with musical works or master recor
     
     <section id="change-examples">
     <h1>Examples</h1>
- <p>Consider the below Change Request (CR) about the <a href="#example-01">Composition example</a> shown above. This CR proposes to Add a date property to the original MVD Package.</p>      
+ <p>Consider the below Change Request (CR) about the <a href="#example-01">Composition example</a> shown above. This CR proposes to Add a date property to the original MMM Package.</p>      
         
     <div class="example">
 <pre class="highlight hljs xquery">
 {
    "@context": [
-         "http://dotbc.info/mvd/",
-         { "dbc": "http://dotbc.info/mvd/",
+         "http://rightschain.info/mmm/",
+         { "mmm": "http://rightschain.info/mmm/",
          }],
-    "@id": "http://dotbc.info/mvd/BCE0543B-3X09-4552-830Q-9951",
-    "@type": "dbc:Package",
+    "@id": "http://example.com/mmm/BCE0543B-3X09-4552-830Q-9951",
+    "@type": "mmm:Package",
     "claimBy": [{
-        "@type": "dbc:Provenance",
+        "@type": "mmm:Provenance",
         "date": "2017-02-25:12:00",
-        "claimant": "http://dotbc.info/user/billie.music"
+        "claimant": "http://example.com/user/billie.music"
         }],
      "hasPart": [{
-        "@type": "dbc:CR:Add",
-        "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
+        "@type": "mmm:CR:Add",
+        "@id": "http://example.com/mmm/BCE0543B-3F09-4552-830B-70B00",
         "date": "2000"
      }]
 }
@@ -619,49 +623,49 @@ The amount of metadata that can be associated with musical works or master recor
 </div>
         
         
-<p>Consider the below Change Request (CR) about the <a href="#example-03">Album example</a> shown above. This CR proposes to Remove one of the Genre properties in the original MVD Package.</p>      
+<p>Consider the below Change Request (CR) about the <a href="#example-03">Album example</a> shown above. This CR proposes to Remove one of the Genre properties in the original MMM Package.</p>      
         
     <div class="example">
 <pre class="highlight hljs xquery">
 {
    "@context": [
-         "http://dotbc.info/mvd/",
-         { "dbc": "http://dotbc.info/mvd/",
+         "http://rightschain.info/mmm/",
+         { "mmm": "http://rightschain.info/mmm/",
          }],
-    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
-    "@type": "dbc:Package",
+    "@id": "http://example.com/mmm/BCE0543B-3F09-4552-830B-70B00",
+    "@type": "mmm:Package",
     "claimBy": [{
-        "@type": "dbc:Provenance",
+        "@type": "mmm:Provenance",
         "date": "2017-03-01:12:00",
-        "claimant": "http://dotbc.info/user/billie.music"
+        "claimant": "http://example.com/user/billie.music"
         }],
      "hasPart": [{
-        "@type": "dbc:CR:Remove",
-        "@id": "http://dotbc.info/mvd/BC0543B-3F09-4552-830B-36363636",
+        "@type": "mmm:CR:Remove",
+        "@id": "http://example.com/mmm/BC0543B-3F09-4552-830B-36363636",
         "genre": "Rock"
      }]
 }
 </pre>
 </div>
       
- <p>Consider the below Change Request (CR) about the <a href="#example-02">Recording example</a> shown above. This CR proposes to Update the Share properties for the two Interested Parties in the original MVD Package. </p>      
+ <p>Consider the below Change Request (CR) about the <a href="#example-02">Recording example</a> shown above. This CR proposes to Update the Share properties for the two Interested Parties in the original MMM Package. </p>      
         
     <div class="example">
 <pre class="highlight hljs xquery">
 {
    "@context": [
-         "http://dotbc.info/mvd/",
-         { "dbc": "http://dotbc.info/mvd/",
+         "http://rightschain.info/mmm/",
+         { "mmm": "http://rightschain.info/mmm/",
          }],
-    "@id": "http://dotbc.info/mvd/BCE0543B-3F09-4552-830B-70B00",
-    "@type": "dbc:Package",
+    "@id": "http://example.com/mmm/BCE0543B-3F09-4552-830B-70B00",
+    "@type": "mmm:Package",
     "claimBy": [{
-        "@type": "dbc:Provenance",
+        "@type": "mmm:Provenance",
         "date": "2017-03-01:12:00",
-        "claimant": "http://dotbc.info/user/billie.music"
+        "claimant": "http://example.com/user/billie.music"
         }],
      "hasPart": [{
-        "@type": "dbc:CR:Update",
+        "@type": "mmm:CR:Update",
         "hasInterestedParty": [{
            "@id": "http://isni.org/isni/0000000121032683",
            "share": "30"
@@ -683,7 +687,7 @@ The amount of metadata that can be associated with musical works or master recor
         
 <section class="appendix">
 <h1>Acknowledgements</h1>
-        <p></p>    
+        <p>The editors wish to thank Chris Tse (Monograph) for feedback on drafts. </p>    
 </section>
         
 	</body>
